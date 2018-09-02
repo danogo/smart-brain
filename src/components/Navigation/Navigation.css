@@ -1,0 +1,15 @@
+.nav {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.sign-btn {
+  font-size: 1.4rem;
+  text-decoration: underline;
+  cursor: pointer;
+  padding: .4rem .8rem;
+}
+
+.sign-btn:hover {
+  color: #655A56;
+}
