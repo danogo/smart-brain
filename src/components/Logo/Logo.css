@@ -1,0 +1,10 @@
+.logo-box {
+  margin: 1rem;
+  display: block;
+  max-width: 100px;
+}
+
+.Tilt {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  background: radial-gradient(#5433ff, #20bdff, #a5fecb);
+}
