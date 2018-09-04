@@ -1,7 +1,7 @@
 export const particleOptions = {
   "particles": {
     "number": {
-      "value": 80,
+      "value": 35,
       "density": {
         "enable": true,
         "value_area": 800
@@ -11,7 +11,7 @@ export const particleOptions = {
       "value": "#ffffff"
     },
     "shape": {
-      "type": "star",
+      "type": "image",
       "stroke": {
         "width": 0,
         "color": "#000000"
@@ -20,7 +20,7 @@ export const particleOptions = {
         "nb_sides": 5
       },
       "image": {
-        "src": "./brain.png",
+        "src": "https://dl.dropbox.com/s/bewcyngbe0x4qcp/brainv2.png?dl=0",
         "width": 100,
         "height": 100
       }
@@ -36,17 +36,17 @@ export const particleOptions = {
       }
     },
     "size": {
-      "value": 3,
+      "value": 20,
       "random": true,
       "anim": {
         "enable": false,
         "speed": 40,
-        "size_min": 0.1,
+        "size_min": 0.5,
         "sync": false
       }
     },
     "line_linked": {
-      "enable": true,
+      "enable": false,
       "distance": 150,
       "color": "#ffffff",
       "opacity": 0.4,
@@ -68,7 +68,7 @@ export const particleOptions = {
     }
   },
   "interactivity": {
-    "detect_on": "canvas",
+    "detect_on": "window",
     "events": {
       "onhover": {
         "enable": true,
@@ -76,7 +76,7 @@ export const particleOptions = {
       },
       "onclick": {
         "enable": true,
-        "mode": "push"
+        "mode": "bubble"
       },
       "resize": true
     },
@@ -89,7 +89,7 @@ export const particleOptions = {
       },
       "bubble": {
         "distance": 400,
-        "size": 40,
+        "size": 15,
         "duration": 2,
         "opacity": 8,
         "speed": 3

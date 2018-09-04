@@ -4,7 +4,7 @@ import ImageLinkForm from './components/ImageLinkForm/ImageLinkForm';
 import Rank from './components/Rank/Rank';
 import Particles from 'react-particles-js';
 import './App.css';
-import { particleOptions } from './particles.config';
+import { particleOptions } from './assets/particles.config';
 
 
 class App extends Component {
@@ -13,12 +13,10 @@ class App extends Component {
       <div className="App">
         <Particles className="particles" params={particleOptions} />
         <Navigation />
-        <main>
-          <Rank />
-          <ImageLinkForm />
-          {/*
-            <FaceRecognition />*/}
-        </main>
+        <Rank />
+        <ImageLinkForm />
+        {/*
+          <FaceRecognition />*/}
       </div>
     );
   }
