@@ -1,9 +1,3 @@
-import Clarifai from 'clarifai';
-
-export const clarifaiApp = new Clarifai.App({
-  apiKey: process.env.REACT_APP_APIKEY
- });
-
 export const particleOptions = {
   "particles": {
     "number": {
