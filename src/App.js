@@ -4,12 +4,8 @@ import ImageLinkForm from './components/ImageLinkForm/ImageLinkForm';
 import Rank from './components/Rank/Rank';
 import './App.css';
 import Particles from 'react-particles-js';
-import { particleOptions } from './assets/config';
-import Clarifai from 'clarifai';
+import { particleOptions, clarifaiApp } from './assets/config';
 
-const clarifaiApp = new Clarifai.App({
-  apiKey: process.env.APIKEY
- });
 
 class App extends Component {
   constructor() {
