@@ -1,3 +1,9 @@
+import Clarifai from 'clarifai';
+
+export const clarifaiApp = new Clarifai.App({
+  apiKey: process.env.CLARIFAI_KEY
+ });
+
 export const particleOptions = {
   "particles": {
     "number": {
