@@ -48,7 +48,7 @@ export const particleOptions = {
     "line_linked": {
       "enable": false,
       "distance": 150,
-      "color": "#ffffff",
+      "color": "#01fbfa",
       "opacity": 0.4,
       "width": 1
     },
@@ -72,10 +72,10 @@ export const particleOptions = {
     "events": {
       "onhover": {
         "enable": true,
-        "mode": "repulse"
+        "mode": "grab"
       },
       "onclick": {
-        "enable": true,
+        "enable": false,
         "mode": "bubble"
       },
       "resize": true
@@ -84,7 +84,7 @@ export const particleOptions = {
       "grab": {
         "distance": 400,
         "line_linked": {
-          "opacity": 1
+          "opacity": .4
         }
       },
       "bubble": {

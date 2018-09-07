@@ -2,11 +2,14 @@
  font-size: 2rem;
  text-align: center;
  position: relative;
- background-color: rgba(1, 251, 250, .9);
+ background-color: rgba(0, 10, 48, 0.5);
  padding: .6rem 1rem;
  box-shadow: 0 0 16px #01fbfa;
+ text-shadow: 2px 4px 10px #000a30;
+ color: #01fbfa;
 }
 
 .rank {
   font-size: 3rem;
+  color: #FF335E;
 }
