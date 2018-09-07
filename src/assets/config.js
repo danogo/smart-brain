@@ -1,7 +1,7 @@
 import Clarifai from 'clarifai';
 
 export const clarifaiApp = new Clarifai.App({
-  apiKey: process.env.CLARIFAI_KEY
+  apiKey: process.env.APIKEY
  });
 
 export const particleOptions = {
