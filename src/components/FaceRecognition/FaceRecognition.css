@@ -1,13 +1,22 @@
-.img-box {
+.img-container {
   position: relative;
   margin-top: 2rem;
   box-shadow: 0 0 20px #01fbfa;
-  max-width: 400px;
-  max-height: 350px;
+  max-width: 500px;
+  max-height: 450px;
 }
 
-.img-box img {
+.img-container img {
   max-width: 400px;
-  height: 350px;
-  object-fit: cover;
+  max-height: 350px;
+  /*fixing 3px reserved gap at the bottom due to displaying img as inline, 
+  another fix would be vertical-align: middle or font-size: 0 in parent element*/
+  display: block;
+}
+
+.img-box {
+  position: absolute;
+  visibility: hidden;
+  border: 2px solid #FF335E;
+  box-shadow: 0 0 10px #01fbfa;
 }

@@ -16,36 +16,52 @@ class App extends Component {
     super();
     this.state = {
       input: '',
-      imgUrl: ''
+      imgUrl: '',
+      imgBox: {}
     };
   }
 
   // using class field syntax(which is enabled by default in create-react-app) to prevent this from rebinding when event handler is triggered
   // another option would be to use standard shorthand method and bind it in constructor like: this.handleInputChange = this.handleInputChange.bind(this)
-  handleInputChange = (event) => {
+  calculateFaceLocation = data => {
+    if (data.outputs[0].data === {}) return {};
+    const clarifaiBox = data.outputs[0].data.regions[0].region_info.bounding_box;
+    const image = document.getElementById('img-input');
+    const width = image.width;
+    const height = image.height;
+    return {
+      topRow: clarifaiBox.top_row * height,
+      leftCol: clarifaiBox.left_col * width,
+      bottomRow: height - (clarifaiBox.bottom_row * height),
+      rightCol: width - (clarifaiBox.right_col * width),
+      visible: 'visible'
+    }
+  }
+  
+  setImgBox = box => {
+    this.setState({imgBox: box});
+  }
+
+  handleInputChange = event => {
     this.setState({input: event.target.value});
   }
 
   handleButtonSubmit = () => {
     this.setState({imgUrl: this.state.input});
-    clarifaiApp.models.predict(Clarifai.FACE_DETECT_MODEL, this.state.input).then(
-      function(response) {
-        console.log(response.outputs[0].data.regions[0].region_info.bounding_box);
-      },
-      function(err) {
-        // there was an error
-      }
-    );
+    clarifaiApp.models.predict(Clarifai.FACE_DETECT_MODEL, this.state.input)
+    .then(response => this.calculateFaceLocation(response))
+    .then(boxData => this.setImgBox(boxData))
+    .catch(err => console.log(err));
   }
 
   render() {
     return (
       <div className="App">
-        <ParticlesBackground/>
+        <ParticlesBackground/>  
         <Navigation />
         <Rank />
         <ImageLinkForm onInputChange={this.handleInputChange} onButtonSubmit={this.handleButtonSubmit}/>
-        <FaceRecognition imageUrl={this.state.imgUrl}/>
+        <FaceRecognition imageBox={this.state.imgBox} imageUrl={this.state.imgUrl}/>
       </div>
     );
   }
