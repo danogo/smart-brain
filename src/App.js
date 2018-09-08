@@ -4,8 +4,7 @@ import ImageLinkForm from './components/ImageLinkForm/ImageLinkForm';
 import Rank from './components/Rank/Rank';
 import FaceRecognition from './components/FaceRecognition/FaceRecognition';
 import './App.css';
-import Particles from 'react-particles-js';
-import { particleOptions } from './assets/config';
+import ParticlesBackground from './components/ParticlesBackground/ParticlesBackground';
 import Clarifai from 'clarifai';
 
 const clarifaiApp = new Clarifai.App({
@@ -42,7 +41,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Particles className="particles" params={particleOptions} />
+        <ParticlesBackground/>
         <Navigation />
         <Rank />
         <ImageLinkForm onInputChange={this.handleInputChange} onButtonSubmit={this.handleButtonSubmit}/>
