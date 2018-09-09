@@ -2,11 +2,11 @@ import React from 'react';
 import './Navigation.css';
 import Logo from '../Logo/Logo';
 
-const Navigation = () => {
+const Navigation = ({ onRouteChange }) => {
   return (
     <nav className="nav">
       <Logo />
-      <p className="nav__btn">Sign Out</p>
+      <button onClick={() => onRouteChange('signin')} className="nav__btn">Sign Out</button>
     </nav>
   );
 }

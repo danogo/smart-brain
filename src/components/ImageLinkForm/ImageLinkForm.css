@@ -31,7 +31,7 @@
   flex-grow: 3;
   background-color: #01fbfa;
   padding: .6rem 1rem;
-  font-size: 1.4rem;
+  font-size: 1.1rem;
   border: none;
   max-width: 100%;
 }
@@ -43,8 +43,8 @@
 
 .form__btn {
   flex-grow: 1;
-  font-family: VT323;
-  font-size: 1.8rem;
+  font-size: 1.4rem;
+  font-weight: 700;
   background-color: transparent;
   border: 3px solid #01fbfa;
   color: #FF335E;
@@ -52,7 +52,8 @@
   padding: .4rem .6rem;
 }
 
-.form__btn:hover {
+.form__btn:hover,
+.form__btn:focus {
   box-shadow: inset 0 0 20px #01fbfa;
 }
 

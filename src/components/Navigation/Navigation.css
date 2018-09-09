@@ -6,16 +6,23 @@
   display: flex;
   justify-content: space-between;
   color: #01fbfa;
-  font-family: 'VT323';
 }
 
 .nav__btn {
   font-size: 1.6rem;
   text-decoration: underline;
   cursor: pointer;
-  margin: 2rem;
+  margin: 1rem;
+  padding: 1rem;
+  color: #01fbfa;
+  font-family: 'VT323';
+  background-color: transparent;
+  border: none;
+  align-self: flex-start;
 }
 
-.nav__btn:hover {
+.nav__btn:hover,
+.nav__btn:focus {
   color: #FF335E;
+  outline: 1px solid #01fbfa;
 }

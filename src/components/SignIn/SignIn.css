@@ -2,23 +2,36 @@
   background-color: rgba(0, 10, 48, 0.5);
   border: none;
   box-shadow: 0 0 16px #01fbfa;
-  padding: 1rem 1.4rem;
+  padding: 1.6rem 2rem;
   position: relative;
   max-width: 100%;
+  border-radius: 2px;
 }
 
 .form__container h2 {
   padding: .6rem 1rem;
-  color: #FF335E;
-  font-size: 2.6rem;
+  color: #01fbfa;
+  font-size: 2.8rem;
   letter-spacing: .2rem;
   font-family: 'VT323';
   text-shadow: 2px 4px 10px #000a30;
+  text-align: center
 }
 
-.form__group {
-  margin-top: 1rem;
-  box-shadow: 0 0 16px #4662FF; 
+.form__group--signin {
+ flex-flow: column-reverse nowrap;
+ box-shadow: none;
+ margin-top: .6rem;
+}
+
+.form__group--signin:last-child {
+  margin-top: 2rem;
+ }
+
+.form__group--signin label {
+  padding: .6rem .2rem;
+  color: #01fbfa;
+  font-weight: bold;
 }
 
 .form__btn {
