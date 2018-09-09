@@ -1,0 +1,27 @@
+.form__container {
+  background-color: rgba(0, 10, 48, 0.5);
+  border: none;
+  box-shadow: 0 0 16px #01fbfa;
+  padding: 1rem 1.4rem;
+  position: relative;
+  max-width: 100%;
+}
+
+.form__container h2 {
+  padding: .6rem 1rem;
+  color: #FF335E;
+  font-size: 2.6rem;
+  letter-spacing: .2rem;
+  font-family: 'VT323';
+  text-shadow: 2px 4px 10px #000a30;
+}
+
+.form__group {
+  margin-top: 1rem;
+  box-shadow: 0 0 16px #4662FF; 
+}
+
+.form__btn {
+  cursor: pointer;
+  text-shadow: 2px 4px 10px #000a30;
+}

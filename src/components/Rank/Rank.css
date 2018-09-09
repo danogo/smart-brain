@@ -1,4 +1,4 @@
-.rank-box {
+.rank__container {
  font-size: 2rem;
  text-align: center;
  position: relative;
@@ -7,6 +7,7 @@
  box-shadow: 0 0 16px #01fbfa;
  text-shadow: 2px 4px 10px #000a30;
  color: #01fbfa;
+ margin-top: 2rem;
 }
 
 .rank {

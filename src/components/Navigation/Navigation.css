@@ -9,13 +9,13 @@
   font-family: 'VT323';
 }
 
-.sign-btn {
+.nav__btn {
   font-size: 1.6rem;
   text-decoration: underline;
   cursor: pointer;
   margin: 2rem;
 }
 
-.sign-btn:hover {
+.nav__btn:hover {
   color: #FF335E;
 }

@@ -3,6 +3,7 @@ import Navigation from './components/Navigation/Navigation';
 import ImageLinkForm from './components/ImageLinkForm/ImageLinkForm';
 import Rank from './components/Rank/Rank';
 import FaceRecognition from './components/FaceRecognition/FaceRecognition';
+import SignIn from './components/SignIn/SignIn';
 import './App.css';
 import ParticlesBackground from './components/ParticlesBackground/ParticlesBackground';
 import Clarifai from 'clarifai';
@@ -66,6 +67,7 @@ class App extends Component {
       <div className="App">
         <ParticlesBackground/>  
         <Navigation />
+        <SignIn/>
         <Rank />
         <ImageLinkForm onInputChange={this.handleInputChange} onButtonSubmit={this.handleButtonSubmit}/>
         <FaceRecognition imageBox={this.state.imgBox} imageUrl={this.state.imgUrl}/>

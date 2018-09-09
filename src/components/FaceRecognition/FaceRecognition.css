@@ -1,4 +1,4 @@
-.img-container {
+.img__container {
   position: relative;
   margin: 2rem 0;
   box-shadow: 0 0 20px #01fbfa;
@@ -6,7 +6,7 @@
   max-height: 450px;
 }
 
-.img-container img {
+.img__container img {
   max-width: 400px;
   max-height: 350px;
   /*fixing 3px reserved gap at the bottom due to displaying img as inline, 
@@ -14,7 +14,7 @@
   display: block;
 }
 
-.img-box {
+.img__box {
   position: absolute;
   visibility: hidden;
   box-shadow: 0 0 0 3px #FF335E;
