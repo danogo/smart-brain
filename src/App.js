@@ -24,8 +24,10 @@ class App extends Component {
   // using class field syntax(which is enabled by default in create-react-app) to prevent this from rebinding when event handler is triggered
   // another option would be to use standard shorthand method and bind it in constructor like: this.handleInputChange = this.handleInputChange.bind(this)
   calculateFaceLocation = data => {
-    if (data.outputs[0].data === {}) return {};
-    const clarifaiBox = data.outputs[0].data.regions[0].region_info.bounding_box;
+    data = data.outputs[0].data; 
+    // if object has no picture detected, clear previous red box
+    if (Object.keys(data).length === 0) return {visible: 'hidden'};
+    const clarifaiBox = data.regions[0].region_info.bounding_box;
     const image = document.getElementById('img-input');
     const width = image.width;
     const height = image.height;
@@ -50,8 +52,13 @@ class App extends Component {
     this.setState({imgUrl: this.state.input});
     clarifaiApp.models.predict(Clarifai.FACE_DETECT_MODEL, this.state.input)
     .then(response => this.calculateFaceLocation(response))
-    .then(boxData => this.setImgBox(boxData))
-    .catch(err => console.log(err));
+    .then(boxData => {
+      return this.setImgBox(boxData)})
+    .catch(err => {
+      console.log(err);
+      // clearing red dot on bad request after picture with face red box
+      this.setImgBox({visible: 'hidden'})
+    });
   }
 
   render() {

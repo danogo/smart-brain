@@ -8,6 +8,7 @@
   padding: 1rem;
   position: relative;
   box-shadow: 0 0 16px #01fbfa;
+  max-width: 100%; 
 }
 
 
@@ -20,7 +21,8 @@
 
 .form__input {
   display: flex;
-  align-self: stretch;
+  flex-flow: row wrap;
+  width: 100%;
   margin-top: 1rem;
   box-shadow: 0 0 16px #4662FF; 
 }
@@ -31,7 +33,7 @@
   padding: .6rem 1rem;
   font-size: 1.4rem;
   border: none;
-  font-family: VT323;
+  max-width: 100%;
 }
 
 .input:focus {
@@ -42,11 +44,12 @@
 .btn {
   flex-grow: 1;
   font-family: VT323;
-  font-size: 1.4rem;
+  font-size: 1.8rem;
   background-color: transparent;
   border: 3px solid #01fbfa;
   color: #FF335E;
   transition: transform .2s ease;
+  padding: .4rem .6rem;
 }
 
 .btn:hover {
