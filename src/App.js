@@ -4,6 +4,7 @@ import ImageLinkForm from './components/ImageLinkForm/ImageLinkForm';
 import Rank from './components/Rank/Rank';
 import FaceRecognition from './components/FaceRecognition/FaceRecognition';
 import SignIn from './components/SignIn/SignIn';
+import Register from './components/Register/Register';
 import './App.css';
 import ParticlesBackground from './components/ParticlesBackground/ParticlesBackground';
 import Clarifai from 'clarifai';
@@ -19,7 +20,8 @@ class App extends Component {
       input: '',
       imgUrl: '',
       imgBox: {},
-      route: 'signin'
+      route: 'signin',
+      isSignedIn: false
     };
   }
 
@@ -30,7 +32,7 @@ class App extends Component {
     // if object has no picture detected, clear previous red box
     if (Object.keys(data).length === 0) return {visible: 'hidden'};
     const clarifaiBox = data.regions[0].region_info.bounding_box;
-    const image = document.getElementById('img-input');
+    const image = document.getElementById('img__input');
     const width = image.width;
     const height = image.height;
     return {
@@ -64,21 +66,32 @@ class App extends Component {
   }
 
   onRouteChange = (route) => {
+    if (route === 'home') {
+      this.setState({isSignedIn: true});
+    } else if (route === 'signout') {
+      this.setState({isSignedIn: false, imgUrl: ''});
+      this.setImgBox({visible: 'hidden'});
+    }
     this.setState({route: route})
   }
 
   render() {
+    const { imgUrl, imgBox, route, isSignedIn } = this.state;
     return (
       <div className="App">
         <ParticlesBackground/>  
-        <Navigation onRouteChange={this.onRouteChange}/>
-        { this.state.route === 'signin' 
-        ? <SignIn onRouteChange={this.onRouteChange}/>
-        : <main>
+        <Navigation isSignedIn={isSignedIn} onRouteChange={this.onRouteChange}/>
+        { route === 'home' 
+        ? <main>
             <Rank />
             <ImageLinkForm onInputChange={this.handleInputChange} onButtonSubmit={this.handleButtonSubmit}/>
-            <FaceRecognition imageBox={this.state.imgBox} imageUrl={this.state.imgUrl}/>
+            <FaceRecognition imageBox={imgBox} imageUrl={imgUrl}/>
           </main>
+        : (
+          route === 'signin' || route === 'signout'
+            ? <SignIn onRouteChange={this.onRouteChange}/>
+            : <Register onRouteChange={this.onRouteChange}/>
+          )
         }
       </div>
     );

@@ -8,21 +8,29 @@
   color: #01fbfa;
 }
 
+.nav__links {
+  display: flex;
+}
+
 .nav__btn {
   font-size: 1.6rem;
   text-decoration: underline;
   cursor: pointer;
-  margin: 1rem;
+  margin: 1rem 1rem 1rem 0;
   padding: 1rem;
   color: #01fbfa;
   font-family: 'VT323';
   background-color: transparent;
   border: none;
   align-self: flex-start;
+  justify-self: flex-start;
 }
 
 .nav__btn:hover,
 .nav__btn:focus {
   color: #FF335E;
+}
+
+.nav__btn:focus {
   outline: 1px solid #01fbfa;
 }

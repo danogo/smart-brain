@@ -6,6 +6,7 @@
   position: relative;
   max-width: 100%;
   border-radius: 2px;
+  min-width: 400px;
 }
 
 .form__container h2 {
@@ -24,17 +25,23 @@
  margin-top: .6rem;
 }
 
-.form__group--signin:last-child {
-  margin-top: 2rem;
- }
-
 .form__group--signin label {
   padding: .6rem .2rem;
   color: #01fbfa;
   font-weight: bold;
 }
 
-.form__btn {
+.form__group--signin .form__btn {
   cursor: pointer;
   text-shadow: 2px 4px 10px #000a30;
+  margin-top: .4rem;
+}
+
+.form__btn--reg {
+  font-size: .8rem;
+}
+
+.form__container fieldset {
+  border: none;
+  margin: .6rem 0 1.2rem 0;
 }

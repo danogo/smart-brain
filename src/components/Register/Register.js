@@ -1,12 +1,15 @@
 import React from 'react';
-import './SignIn.css';
 
-const SignIn = ({ onRouteChange }) => {
+const Register = ({ onRouteChange }) => {
   return (
     <div className="form__container">
       <form action="#">
-          <h2>Sign in</h2>
+          <h2>Register</h2>
           <fieldset>
+            <div className="form__group form__group--signin">
+              <input type="text" className="form__input" placeholder="username" id="name"/>
+              <label htmlFor="name" className="form__label">Name</label>
+            </div>
             <div className="form__group form__group--signin">
               <input type="email" className="form__input" placeholder="username@email.com" id="email"/>
               <label htmlFor="email" className="form__label">Email</label>
@@ -18,10 +21,7 @@ const SignIn = ({ onRouteChange }) => {
           </fieldset>
           <fieldset>
             <div className="form__group form__group--signin">
-              <input onClick={() => onRouteChange('home')} type="submit" className="form__btn" value="Sign in"/>
-            </div>
-            <div className="form__group form__group--signin">
-              <button onClick={() => onRouteChange('register')} className="form__btn form__btn--reg">Register</button>
+              <input onClick={() => onRouteChange('home')} type="submit" className="form__btn" value="Register"/>
             </div>
           </fieldset>
       </form>
@@ -29,4 +29,4 @@ const SignIn = ({ onRouteChange }) => {
   )
 };
 
-export default SignIn;
+export default Register;
