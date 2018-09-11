@@ -19,7 +19,7 @@ class App extends Component {
     this.state = {
       input: '',
       imgUrl: '',
-      imgBox: {},
+      faceBoxes: [],
       route: 'signin',
       isSignedIn: false
     };
@@ -29,23 +29,28 @@ class App extends Component {
   // another option would be to use standard shorthand method and bind it in constructor like: this.handleInputChange = this.handleInputChange.bind(this)
   calculateFaceLocation = data => {
     data = data.outputs[0].data; 
-    // if object has no picture detected, clear previous red box
-    if (Object.keys(data).length === 0) return {visible: 'hidden'};
-    const clarifaiBox = data.regions[0].region_info.bounding_box;
-    const image = document.getElementById('img__input');
+    console.log('fetched data: ', data);
+    // if object has no picture detected, throw error, and skip following code to .catch
+    if (Object.keys(data).length === 0) throw new Error('No faces were detected');
+    const image = document.getElementById('img__fetched');
     const width = image.width;
     const height = image.height;
-    return {
-      topRow: clarifaiBox.top_row * height,
-      leftCol: clarifaiBox.left_col * width,
-      bottomRow: height - (clarifaiBox.bottom_row * height),
-      rightCol: width - (clarifaiBox.right_col * width),
-      visible: 'visible'
-    }
+    // extracting boxes for all find faces
+    const clarifaiBoxes = data.regions.map(region => {
+      let box = region.region_info.bounding_box;
+      // calculating relative positions based on fetched width and height percentages
+      return {
+        topRow: box.top_row * height,
+        leftCol: box.left_col * width,
+        bottomRow: height - (box.bottom_row * height),
+        rightCol: width - (box.right_col * width),
+      }
+    });
+    return clarifaiBoxes;
   }
   
-  setImgBox = box => {
-    this.setState({imgBox: box});
+  setFaceBox = boxData => {
+    this.setState({faceBoxes: boxData});
   }
 
   handleInputChange = event => {
@@ -57,11 +62,11 @@ class App extends Component {
     clarifaiApp.models.predict(Clarifai.FACE_DETECT_MODEL, this.state.input)
     .then(response => this.calculateFaceLocation(response))
     .then(boxData => {
-      return this.setImgBox(boxData)})
+      return this.setFaceBox(boxData)})
     .catch(err => {
       console.log(err);
-      // clearing red dot on bad request after picture with face red box
-      this.setImgBox({visible: 'hidden'})
+      // clearing previous red boxes in case there were no faces found or it was bad request to clarifai api
+      this.setFaceBox([]);
     });
   }
 
@@ -69,14 +74,13 @@ class App extends Component {
     if (route === 'home') {
       this.setState({isSignedIn: true});
     } else if (route === 'signout') {
-      this.setState({isSignedIn: false, imgUrl: ''});
-      this.setImgBox({visible: 'hidden'});
+      this.setState({isSignedIn: false, imgUrl: '', input: '', faceBoxes: []});
     }
     this.setState({route: route})
   }
 
   render() {
-    const { imgUrl, imgBox, route, isSignedIn } = this.state;
+    const { imgUrl, faceBoxes, route, isSignedIn } = this.state;
     return (
       <div className="App">
         <ParticlesBackground/>  
@@ -85,7 +89,7 @@ class App extends Component {
         ? <main>
             <Rank />
             <ImageLinkForm onInputChange={this.handleInputChange} onButtonSubmit={this.handleButtonSubmit}/>
-            <FaceRecognition imageBox={imgBox} imageUrl={imgUrl}/>
+            <FaceRecognition faceBoxes={faceBoxes} imageUrl={imgUrl}/>
           </main>
         : (
           route === 'signin' || route === 'signout'

@@ -16,6 +16,5 @@
 
 .img__box {
   position: absolute;
-  visibility: hidden;
   box-shadow: 0 0 0 3px #FF335E;
 }
