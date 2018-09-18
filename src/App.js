@@ -21,10 +21,17 @@ class App extends Component {
       imgUrl: '',
       faceBoxes: [],
       route: 'signin',
-      isSignedIn: false
+      isSignedIn: false,
+      user: {
+        id: '',
+        name: '',
+        email: '',
+        detections: 0,
+        joined: ''
+      }
     };
   }
-
+  
   // using class field syntax(which is enabled by default in create-react-app) to prevent this from rebinding when event handler is triggered
   // another option would be to use standard shorthand method and bind it in constructor like: this.handleInputChange = this.handleInputChange.bind(this)
   calculateFaceLocation = data => {
@@ -70,7 +77,7 @@ class App extends Component {
     });
   }
 
-  onRouteChange = (route) => {
+  handleRouteChange = route => {
     if (route === 'home') {
       this.setState({isSignedIn: true});
     } else if (route === 'signout') {
@@ -78,13 +85,25 @@ class App extends Component {
     }
     this.setState({route: route})
   }
+  
+  handleUserLoad = userData => {
+    this.setState({
+      user: {
+        id: userData.id,
+        name: userData.name,
+        email: userData.email,
+        detections: userData.detections,
+        joined: userData.joined
+      }
+    });
+  }
 
   render() {
     const { imgUrl, faceBoxes, route, isSignedIn } = this.state;
     return (
       <div className="App">
         <ParticlesBackground/>  
-        <Navigation isSignedIn={isSignedIn} onRouteChange={this.onRouteChange}/>
+        <Navigation isSignedIn={isSignedIn} onRouteChange={this.handleRouteChange}/>
         { route === 'home' 
         ? <main>
             <Rank />
@@ -93,8 +112,8 @@ class App extends Component {
           </main>
         : (
           route === 'signin' || route === 'signout'
-            ? <SignIn onRouteChange={this.onRouteChange}/>
-            : <Register onRouteChange={this.onRouteChange}/>
+            ? <SignIn onRouteChange={this.handleRouteChange}/>
+            : <Register onUserLoad={this.handleUserLoad} onRouteChange={this.handleRouteChange}/>
           )
         }
       </div>
