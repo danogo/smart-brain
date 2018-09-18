@@ -64,11 +64,22 @@ class App extends Component {
     this.setState({input: event.target.value});
   }
 
-  handleButtonSubmit = () => {
+  handlePictureSubmit = () => {
     this.setState({imgUrl: this.state.input});
     clarifaiApp.models.predict(Clarifai.FACE_DETECT_MODEL, this.state.input)
     .then(response => this.calculateFaceLocation(response))
     .then(boxData => {
+      if (boxData) {
+        fetch('http://localhost:3000/image', {
+          method: 'put',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({
+            id: this.state.user.id 
+          })
+        })
+        .then(response => response.json())
+        .then(count => this.setState({user: Object.assign({}, this.state.user, {detections: count})}));
+      }
       return this.setFaceBox(boxData)})
     .catch(err => {
       console.log(err);
@@ -83,7 +94,7 @@ class App extends Component {
     } else if (route === 'signout') {
       this.setState({isSignedIn: false, imgUrl: '', input: '', faceBoxes: []});
     }
-    this.setState({route: route})
+    this.setState({route: route});
   }
   
   handleUserLoad = userData => {
@@ -106,13 +117,13 @@ class App extends Component {
         <Navigation isSignedIn={isSignedIn} onRouteChange={this.handleRouteChange}/>
         { route === 'home' 
         ? <main>
-            <Rank />
-            <ImageLinkForm onInputChange={this.handleInputChange} onButtonSubmit={this.handleButtonSubmit}/>
+            <Rank name={this.state.user.name} detections={this.state.user.detections}/>
+            <ImageLinkForm onInputChange={this.handleInputChange} onButtonSubmit={this.handlePictureSubmit}/>
             <FaceRecognition faceBoxes={faceBoxes} imageUrl={imgUrl}/>
           </main>
         : (
           route === 'signin' || route === 'signout'
-            ? <SignIn onRouteChange={this.handleRouteChange}/>
+            ? <SignIn onUserLoad={this.handleUserLoad} onRouteChange={this.handleRouteChange}/>
             : <Register onUserLoad={this.handleUserLoad} onRouteChange={this.handleRouteChange}/>
           )
         }
