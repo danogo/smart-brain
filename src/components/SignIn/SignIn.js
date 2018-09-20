@@ -19,6 +19,10 @@ class SignIn extends React.Component {
   }
 
   handleSubmitSignIn = () => {
+    // don't try to login user with empty strings as inputs
+  if (!this.state.email || !this.state.password) {
+    return console.log('Please provide all necessary information');
+  }
     fetch('http://localhost:3000/signin', {
       method: 'post',
       headers: {'Content-Type': 'application/json'},

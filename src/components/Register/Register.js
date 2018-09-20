@@ -23,7 +23,7 @@ class Register extends React.Component {
   }
 
   handleSubmitRegister = () => {
-    // don't register user with emty strings as inputs
+    // don't register user with empty strings as inputs
     if (!this.state.name || !this.state.email || !this.state.password) {
       return console.log('Please provide all necessary information');
     }
