@@ -23,6 +23,11 @@ class Register extends React.Component {
   }
 
   handleSubmitRegister = () => {
+    // don't register user with emty strings as inputs
+    if (!this.state.name || !this.state.email || !this.state.password) {
+      return console.log('Please provide all necessary information');
+    }
+    // send credentials to server for registration
     fetch('http://localhost:3000/register', {
       method: 'post',
       headers: {'Content-Type': 'application/json'},
@@ -34,11 +39,14 @@ class Register extends React.Component {
     })
     .then(response => response.json())
     .then(userData => {
-      if (userData) {
+      if (userData.name && userData.email) {
         this.props.onRouteChange('home');
         this.props.onUserLoad(userData);
+      } else {
+        console.log(userData);
       }
-    });
+    })
+    .catch(err => console.log(err));
   }
 
   render() {

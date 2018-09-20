@@ -32,8 +32,11 @@ class SignIn extends React.Component {
       if (userData.id) {
         this.props.onRouteChange('home');
         this.props.onUserLoad(userData);
-      } 
-    });
+      } else {
+        console.log(userData);
+      }
+    })
+    .catch(err => console.log('connection error'));
   }
 
   render() {
