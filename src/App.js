@@ -68,7 +68,7 @@ class App extends Component {
     this.setState({imgUrl: this.state.input});
     // clarifai is moved from front-end to back-end to hide clarifai api authorization key from network request headers. Instead of fetching data from clarifai api on frontend, we send input value to the backed imageurl route which handles api call and respond with the data from clarifai
     // clarifaiApp.models.predict(Clarifai.FACE_DETECT_MODEL, this.state.input) - that line was moved to backend
-    fetch('http://localhost:3000/imageurl', {
+    fetch('https://smart-brain-api-danogo.herokuapp.com/imageurl', {
       method: 'post',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
@@ -80,7 +80,7 @@ class App extends Component {
     .then(response => this.calculateFaceLocation(response))
     .then(boxData => {
       if (boxData) {
-        fetch('http://localhost:3000/image', {
+        fetch('https://smart-brain-api-danogo.herokuapp.com/image', {
           method: 'put',
           headers: {'Content-Type': 'application/json'},
           body: JSON.stringify({

@@ -28,7 +28,7 @@ class Register extends React.Component {
       return console.log('Please provide all necessary information');
     }
     // send credentials to server for registration
-    fetch('http://localhost:3000/register', {
+    fetch('https://smart-brain-api-danogo.herokuapp.com/register', {
       method: 'post',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
