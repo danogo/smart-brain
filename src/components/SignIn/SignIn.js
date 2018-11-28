@@ -23,7 +23,7 @@ class SignIn extends React.Component {
   if (!this.state.email || !this.state.password) {
     return console.log('Please provide all necessary information');
   }
-    fetch('https://smart-brain-api-danogo.herokuapp.com/signin', {
+    fetch('https://cors-anywhere-danogo.herokuapp.com/https://smart-brain-api-danogo.herokuapp.com/signin', {
       method: 'post',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({

@@ -7,11 +7,6 @@ import SignIn from './components/SignIn/SignIn';
 import Register from './components/Register/Register';
 import './App.css';
 import ParticlesBackground from './components/ParticlesBackground/ParticlesBackground';
-// import Clarifai from 'clarifai'; - not needed, moved to back-end
-
-// const clarifaiApp = new Clarifai.App({
-//   apiKey: process.env.REACT_APP_APIKEY
-//  }); - not needed, moved to back-end
 
  const initialState = {
   input: '',
@@ -36,6 +31,7 @@ class App extends Component {
   // using class field syntax(which is enabled by default in create-react-app) to prevent this from rebinding when event handler is triggered
   // another option would be to use standard shorthand method and bind it in constructor like: this.handleInputChange = this.handleInputChange.bind(this)
   calculateFaceLocation = data => {
+    console.log(data);
     data = data.outputs[0].data; 
     // if object has no picture detected, throw error, and skip following code to .catch
     if (Object.keys(data).length === 0) throw new Error('No faces were detected');
@@ -68,7 +64,7 @@ class App extends Component {
     this.setState({imgUrl: this.state.input});
     // clarifai is moved from front-end to back-end to hide clarifai api authorization key from network request headers. Instead of fetching data from clarifai api on frontend, we send input value to the backed imageurl route which handles api call and respond with the data from clarifai
     // clarifaiApp.models.predict(Clarifai.FACE_DETECT_MODEL, this.state.input) - that line was moved to backend
-    fetch('https://smart-brain-api-danogo.herokuapp.com/imageurl', {
+    fetch('https://cors-anywhere-danogo.herokuapp.com/https://smart-brain-api-danogo.herokuapp.com/imageurl', {
       method: 'post',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
@@ -80,7 +76,7 @@ class App extends Component {
     .then(response => this.calculateFaceLocation(response))
     .then(boxData => {
       if (boxData) {
-        fetch('https://smart-brain-api-danogo.herokuapp.com/image', {
+        fetch('https://cors-anywhere-danogo.herokuapp.com/https://smart-brain-api-danogo.herokuapp.com/image', {
           method: 'put',
           headers: {'Content-Type': 'application/json'},
           body: JSON.stringify({
