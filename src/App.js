@@ -31,7 +31,6 @@ class App extends Component {
   // using class field syntax(which is enabled by default in create-react-app) to prevent this from rebinding when event handler is triggered
   // another option would be to use standard shorthand method and bind it in constructor like: this.handleInputChange = this.handleInputChange.bind(this)
   calculateFaceLocation = data => {
-    console.log(data);
     data = data.outputs[0].data; 
     // if object has no picture detected, throw error, and skip following code to .catch
     if (Object.keys(data).length === 0) throw new Error('No faces were detected');
